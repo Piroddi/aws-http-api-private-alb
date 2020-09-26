@@ -12,7 +12,7 @@ generate "provider" {
   contents = <<EOF
 provider "aws" {
   version = "2.67.0"
-  profile = "cq"
+  profile = "piroddicloud"
   region = "eu-west-1"
 }
 
@@ -27,18 +27,18 @@ EOF
 remote_state {
   backend = "s3"
   config = {
-    bucket = "euw1-dev-terraform-state"
+    bucket = "euw1-http-api-terraform-state"
     key = "dev/ecs_alb/${path_relative_to_include()}/terraform.tfstate"
     region = "eu-west-1"
     encrypt = true
-    dynamodb_table = "dev-terraform-lock-table"
+    dynamodb_table = "http-api-terraform-lock-table"
   }
 }
 
 inputs = {
   name = "helloworld"
   private_subnet_ids = dependency.vpc.outputs.private_subnet_ids
-  app_port = "8080"
+  app_port = "8000"
   vpc_id = dependency.vpc.outputs.vpc_id
   alb_security_group = dependency.vpc.outputs.alb_sg
 }

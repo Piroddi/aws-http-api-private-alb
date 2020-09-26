@@ -78,3 +78,8 @@ variable "tags" {
   type = map(string)
   description = "List of tags to attach to microservice resources"
 }
+
+variable "alb_listner_priority" {
+ type = string
+  description = "The priority for alb listener"
+}

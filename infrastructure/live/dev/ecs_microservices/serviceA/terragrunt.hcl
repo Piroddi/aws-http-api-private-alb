@@ -15,12 +15,12 @@ dependency "ecs_cluster" {
 }
 
 inputs = {
-  name = "helloworld"
+  name = "serviceA"
   vpc_id = dependency.vpc.outputs.vpc_id
   private_subnet_ids = dependency.vpc.outputs.private_subnet_ids
   vpc_cidr_block = dependency.vpc.outputs.vpc_cidr
-  app_image = ""
-  app_port = 8080
+  app_image = "816070112642.dkr.ecr.eu-west-1.amazonaws.com/service_a"
+  app_port = 8000
   fargate_cpu = 1024
   fargate_memory = 2048
   ecs_min_tasks = 1
@@ -29,7 +29,8 @@ inputs = {
   ecs_security_group_id =  dependency.vpc.outputs.ecs_taks_sg
   alb_security_group = dependency.vpc.outputs.alb_sg
   alb_listner_arn = dependency.alb.outputs.alb_lister_arn
-  alb_route_path = "/v1/helloworld" #Context path of springboot application
+  alb_route_path = "/service-A" #Context path of springboot application
+  alb_listner_priority= 100
 }
 
 include {

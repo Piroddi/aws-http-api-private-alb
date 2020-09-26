@@ -4,7 +4,7 @@ generate "provider" {
   contents = <<EOF
 provider "aws" {
   version = "2.67.0"
-  profile = "cq"
+  profile = "piroddicloud"
   region = "eu-west-1"
 }
 
@@ -19,10 +19,10 @@ EOF
 remote_state {
   backend = "s3"
   config = {
-    bucket = "euw1-dev-terraform-state"
+    bucket = "euw1-http-api-terraform-state"
     key = "dev/ecs_microservice/${path_relative_to_include()}/terraform.tfstate"
     region = "eu-west-1"
     encrypt = true
-    dynamodb_table = "dev-terraform-lock-table"
+    dynamodb_table = "http-api-terraform-lock-table"
   }
 }

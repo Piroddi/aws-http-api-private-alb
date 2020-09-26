@@ -20,7 +20,7 @@ resource "aws_codepipeline" "main" {
       configuration = {
         Owner                = var.github_org
         Repo                 = var.repository_name
-        PollForSourceChanges = "true"
+        PollForSourceChanges = "false"
         Branch               = var.branch_name
         OAuthToken           = var.github_token
       }
@@ -42,6 +42,7 @@ resource "aws_codepipeline" "main" {
       configuration = {
         ProjectName   = var.codebuild_project_name
         PrimarySource = "SourceArtifact"
+
 
         EnvironmentVariables = jsonencode([
           {

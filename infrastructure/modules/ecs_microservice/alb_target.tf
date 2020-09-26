@@ -14,7 +14,7 @@ resource "aws_lb_target_group" "alb_tg" {
 
 resource "aws_lb_listener_rule" "static" {
   listener_arn = var.alb_listner_arn
-  priority     = 100
+  priority     = var.alb_listner_priority
 
   action {
     type             = "forward"

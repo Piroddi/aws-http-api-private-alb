@@ -1,4 +1,4 @@
 resource "aws_ecs_cluster" "main" {
-  name = "wamly-${var.env}"
+  name = "helloworld-${var.env}"
   tags = var.tags
 }
