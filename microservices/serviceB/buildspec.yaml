@@ -14,20 +14,20 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - cd microservices/serviceA
-        #Build jar + unit tests
+      - cd microservices/serviceB
+      #Build jar + unit tests
       - mvn clean install
-        #Build docker images
+      #Build docker images
       - docker build -t $ECR_REPO:$IMAGE_TAG -t $ECR_REPO:latest .
       - docker push $ECR_REPO
-        # Build new ECS task definition file
+      # Build new ECS task definition file
       - printf '[{"name":"%s","imageUri":"%s"}]' "serviceB" "$ECR_REPO:$IMAGE_TAG" | tee imagedefinitions.json
 cache:
   paths:
     - '/root/.m2/**/*'
 artifacts:
   files:
-    - imagedefinitions.json
+    - microservices/serviceB/imagedefinitions.json
   discard-paths: yes
 
 reports:

@@ -5,9 +5,10 @@ inputs = {
   tags = {
     app_name = "serviceB"
   }
-  ecs_service_name = "serviceB-dev"
+  ecs_service_name = "serviceA-dev"
   github_secret = "Terraform"
-  buildspec_location = "microservices/serviceA"
+  buildspec_location = "microservices/serviceB/buildspec.yaml"
+  ecr_repo = "service_b"
 }
 
 include {
