@@ -53,3 +53,8 @@ variable "ecs_service_name" {
   type = string
   description = "The name of the ECS service"
 }
+
+variable "ecr_repo" {
+  type = string
+  description = "Name of ecr repo"
+}

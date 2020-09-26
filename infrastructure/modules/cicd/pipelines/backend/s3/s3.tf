@@ -1,6 +1,6 @@
 
 resource "aws_s3_bucket" "main" {
-  bucket = replace("${var.s3_bucket_name}-${var.env}-artifacts", "_" ,"-")
+  bucket = lower(replace("${var.s3_bucket_name}-${var.env}-artifacts", "_" ,"-"))
   acl = "private"
   region = data.aws_region.current.id
 

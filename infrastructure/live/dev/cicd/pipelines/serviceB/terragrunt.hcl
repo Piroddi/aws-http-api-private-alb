@@ -6,7 +6,8 @@ inputs = {
     app_name = "serviceB"
   }
   ecs_service_name = "serviceB-dev"
-
+  github_secret = "Terraform"
+  buildspec_location = "microservices/serviceA"
 }
 
 include {

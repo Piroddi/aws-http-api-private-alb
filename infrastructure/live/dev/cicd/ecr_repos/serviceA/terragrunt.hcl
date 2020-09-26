@@ -1,5 +1,5 @@
 inputs = {
-  name = "serviceA"
+  name = "service_a"
   scan = false
 
 }

@@ -37,3 +37,8 @@ variable "buildspec_location" {
   type = string
   description = "location of buildspec"
 }
+
+variable "ecr_repo" {
+  type = string
+  description = "Name of ecr repo"
+}

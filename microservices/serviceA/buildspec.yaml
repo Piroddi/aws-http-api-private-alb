@@ -27,7 +27,7 @@ cache:
     - '/root/.m2/**/*'
 artifacts:
   files:
-    - imagedefinitions.json
+    - microservices/serviceA/imagedefinitions.json
   discard-paths: yes
 
 reports:
