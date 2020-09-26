@@ -8,20 +8,20 @@ locals {
 }
 
 module "kms" {
-  source = "./kms"
+  source = "kms"
   env = var.env
   kms_key_name = var.pipeline_name
 }
 
 module "s3" {
   s3_bucket_name = var.pipeline_name
-  source = "./s3"
+  source = "s3"
   env = var.env
   tags = local.common_tags
 }
 
 module "codebuild" {
-  source = "./codebuild"
+  source = "codebuild"
 
   buildspec = "buildspec.yaml"
   codebuild_compute_type = "BUILD_GENERAL1_MEDIUM"
@@ -33,7 +33,7 @@ module "codebuild" {
 }
 
 module "codepipeline" {
-  source = "./codepipeline"
+  source = "codepipeline"
 
   S3_bucket_name = module.s3.s3_bucket_id
   branch_name = var.branch_name

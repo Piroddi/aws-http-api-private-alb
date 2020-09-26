@@ -32,6 +32,15 @@ resource "aws_apigatewayv2_api_mapping" "main" {
   stage       = aws_apigatewayv2_stage.main.id
 }
 
+resource "aws_api_gateway_authorizer" "main" {
+  name = "cognito-authorizer-${var.env}"
+  rest_api_id = aws_apigatewayv2_api.main.id
+  type = "COGNITO_USER_POOLS"
+  identity_source = "method.request.header.Authorization"
+  provider_arns = ["arn:aws:cognito-idp:eu-west-1:686410090828:userpool/${var.user_pool_id}"]
+}
+
+
 
 
 

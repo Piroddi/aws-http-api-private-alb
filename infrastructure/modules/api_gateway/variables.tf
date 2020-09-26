@@ -31,3 +31,8 @@ variable "tags" {
   type = map(string)
   description = "Map of tags to associated with api gateway"
 }
+
+variable "user_pool_id" {
+  type = string
+  description = "Cognito user pool id"
+}

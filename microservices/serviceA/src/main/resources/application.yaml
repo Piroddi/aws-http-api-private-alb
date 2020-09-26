@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: /service-A
+  port: 8000
