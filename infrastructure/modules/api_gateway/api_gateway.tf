@@ -9,6 +9,8 @@ resource "aws_apigatewayv2_route" "main" {
   api_id = aws_apigatewayv2_api.main.id
   route_key = "ANY /{proxy+}"
   target = "integrations/${aws_apigatewayv2_integration.main.id}"
+  authorization_type = "JWT"
+  authorizer_id = aws_apigatewayv2_authorizer.main.id
 }
 
 resource "aws_apigatewayv2_integration" "main" {
@@ -24,6 +26,12 @@ resource "aws_apigatewayv2_stage" "main" {
   api_id = aws_apigatewayv2_api.main.id
   name   = "$default"
   auto_deploy = true
+
+  access_log_settings {
+    destination_arn = aws_cloudwatch_log_group.main.arn
+    format = "$context.requestId $context.apiId $context.authorizer.error $context.authorizer.latency $context.authorizer.status $context.domainName $context.error.message $context.httpMethod"
+  }
+
 }
 
 resource "aws_apigatewayv2_api_mapping" "main" {
@@ -32,15 +40,17 @@ resource "aws_apigatewayv2_api_mapping" "main" {
   stage       = aws_apigatewayv2_stage.main.id
 }
 
-resource "aws_api_gateway_authorizer" "main" {
+resource "aws_apigatewayv2_authorizer" "main" {
+  api_id           = aws_apigatewayv2_api.main.id
+  authorizer_type  = "JWT"
+  identity_sources = ["$request.header.Authorization"]
   name = "cognito-authorizer-${var.env}"
-  rest_api_id = aws_apigatewayv2_api.main.id
-  type = "COGNITO_USER_POOLS"
-  identity_source = "method.request.header.Authorization"
-  provider_arns = ["arn:aws:cognito-idp:eu-west-1:686410090828:userpool/${var.user_pool_id}"]
+
+  jwt_configuration {
+    audience = [var.client_id]
+    issuer   = "https://cognito-idp.eu-west-1.amazonaws.com/${var.user_pool_id}"
+  }
 }
-
-
 
 
 

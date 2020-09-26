@@ -36,3 +36,8 @@ variable "user_pool_id" {
   type = string
   description = "Cognito user pool id"
 }
+
+variable "client_id" {
+  type = string
+  description = "The client id for the app created in the user pool"
+}

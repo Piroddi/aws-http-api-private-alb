@@ -1,5 +1,8 @@
+data "aws_caller_identity" "current" {}
+
+
 data "aws_acm_certificate" "issued" {
-  domain   = "api.${var.route53_domain}"
+  domain   = "*.${var.route53_domain}"
   statuses = ["ISSUED"]
 }
 
