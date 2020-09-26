@@ -23,7 +23,7 @@ module "s3" {
 module "codebuild" {
   source = "codebuild"
 
-  buildspec = "buildspec.yaml"
+  buildspec = var.buildspec_location
   codebuild_compute_type = "BUILD_GENERAL1_MEDIUM"
   codebuild_image = "aws/codebuild/standard:4.0"
   codebuild_project_name = var.pipeline_name

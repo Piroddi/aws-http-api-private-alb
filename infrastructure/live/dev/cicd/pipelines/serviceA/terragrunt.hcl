@@ -1,12 +1,11 @@
 inputs = {
-  pipeline_name = "helloworld"
-  repository_name = "helloworld"
-  branch_name = "develop"
+  pipeline_name = "serviceA"
+  repository_name = "aws-http-api-private-alb"
+  branch_name = "master"
   tags = {
-    app_name = "helloworld"
+    app_name = "serviceA"
   }
-  ecs_service_name = "helloworld-dev"
-  github_secret = ""
+  ecs_service_name = "serviceA-dev"
 }
 
 include {

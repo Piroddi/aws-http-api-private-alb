@@ -32,3 +32,8 @@ variable "github_secret" {
   type = string
   description = "Github secret to access code"
 }
+
+variable "buildspec_location" {
+  type = string
+  description = "location of buildspec"
+}

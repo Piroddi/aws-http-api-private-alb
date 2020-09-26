@@ -14,6 +14,7 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
+      - cd microservices/serviceA
         #Build jar + unit tests
       - mvn clean install
         #Build docker images
