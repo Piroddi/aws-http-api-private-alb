@@ -1,0 +1,36 @@
+version: 0.2
+env:
+  variables:
+    AWS_DEFAULT_REGION: "eu-west-1"
+    IMAGE_TAG: "latest"
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+        #Build jar + unit tests
+      - mvn clean install
+        #Build docker images
+      - docker build -t $ECR_REPO:$IMAGE_TAG -t $ECR_REPO:latest .
+      - docker push $ECR_REPO
+        # Build new ECS task definition file
+      - printf '[{"name":"%s","imageUri":"%s"}]' "serviceA" "$ECR_REPO:$IMAGE_TAG" | tee imagedefinitions.json
+cache:
+  paths:
+    - '/root/.m2/**/*'
+artifacts:
+  files:
+    - imagedefinitions.json
+  discard-paths: yes
+
+reports:
+  UnitTests:
+    file:
+      - '**/*'
+    base-directory: 'target/sunfire-reports'
