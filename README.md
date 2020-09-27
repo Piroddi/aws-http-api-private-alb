@@ -1,7 +1,9 @@
 ## Exposing a Private Application Load Balancer with AWS HTTP API
 
 Using AWS's new HTTP API Gateway along with a VPC Private Link to expose a private
-ALB. The ALB is used to expose two ecs services.
+ALB. The ALB is used to expose two ecs services. Medium article can be found here:
+
+https://medium.com/@kpiroddi/securing-your-containerised-entry-point-with-aws-http-apis-cognito-vpc-link-alb-e6c5e2116e26
 
 ## Technical Architecture Diagram
 ![Alt text](./arch.png?raw=true "Technical Architecture Diagram")
