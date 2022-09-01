@@ -19,7 +19,8 @@ phases:
       - mvn clean install
       #Build docker images
       - docker build -t $ECR_REPO:$IMAGE_TAG -t $ECR_REPO:latest .
-      - docker push $ECR_REPO
+      - docker push $ECR_REPO:$IMAGE_TAG
+      - docker push $ECR_REPO:latest
       # Build new ECS task definition file
       - printf '[{"name":"%s","imageUri":"%s"}]' "serviceB" "$ECR_REPO:$IMAGE_TAG" | tee imagedefinitions.json
 cache:
