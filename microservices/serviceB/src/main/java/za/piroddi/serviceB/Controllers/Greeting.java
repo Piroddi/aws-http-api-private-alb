@@ -12,24 +12,8 @@ import java.util.Map;
 @Controller
 public class Greeting {
 
-
-
-
     @GetMapping("/greeting")
     public String main(Model model) {
-
-        User Kelvin =User.builder()
-                .firstName("Kelvin")
-                .lastName("Piroddi")
-                .email("kpiroddi@gmail.com")
-                .build();
-
-        Map<String, User> test = new HashMap<>();
-        test.put("1",Kelvin);
-
-
-        model.addAttribute("name", Kelvin.getFirstName());
-        model.addAttribute("users", test);
 
         return "greeting";
     }
