@@ -1,4 +1,4 @@
 resource "aws_ecs_cluster" "main" {
-  name = "helloworld-${var.env}"
+  name = "containers-${var.env}"
   tags = var.tags
 }

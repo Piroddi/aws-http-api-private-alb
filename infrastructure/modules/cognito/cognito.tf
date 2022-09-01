@@ -23,9 +23,9 @@ resource "aws_cognito_user_pool_client" "client" {
 }
 
 resource "aws_cognito_user_pool_domain" "main" {
-  domain          = "auth.piroddi.co.za"
+  domain          = "auth.piroddi.link"
   #Had to hardcode cert arn, as cert has to be in us-east-1 region
-  certificate_arn = "arn:aws:acm:us-east-1:816070112642:certificate/d8a85243-71e7-46b4-a3d8-e9bda69807f6"
+  certificate_arn = "arn:aws:acm:us-east-1:816070112642:certificate/2bce4cbf-29e1-4683-ba3d-a8dfe84f87aa"
   user_pool_id    = aws_cognito_user_pool.pool.id
 }
 

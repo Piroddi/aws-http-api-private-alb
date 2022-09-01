@@ -1,3 +1,7 @@
+locals{
+  env = "dev"
+}
+
 inputs = {
   vpc_tag_name = "piroddi-vpc"
   vpc_cidr_block = "10.0.0.0/16"

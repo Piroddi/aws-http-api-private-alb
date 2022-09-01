@@ -1,13 +1,19 @@
-
 resource "aws_s3_bucket" "main" {
   bucket = lower(replace("${var.s3_bucket_name}-${var.env}-artifacts", "_" ,"-"))
-  acl = "private"
-  region = data.aws_region.current.id
 
-  versioning {
-    enabled = true
-  }
   tags = var.tags
+}
+
+resource "aws_s3_bucket_versioning" "main" {
+  bucket = aws_s3_bucket.main.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+resource "aws_s3_bucket_acl" "main" {
+  bucket = aws_s3_bucket.main.id
+  acl    = "private"
 }
 
 resource "aws_s3_bucket_policy" main {

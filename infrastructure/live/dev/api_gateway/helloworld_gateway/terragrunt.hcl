@@ -1,8 +1,3 @@
-dependencies {
-  paths = ["../../ecs_alb", "../../networking/vpc", "../../cognito"]
-}
-
-
 dependency "alb" {
   config_path = "../../ecs_alb"
 }
@@ -20,7 +15,7 @@ inputs = {
   vpc_link_sg_ids = dependency.vpc.outputs.alb_sg
   private_subnets = dependency.vpc.outputs.private_subnet_ids
   alb_lister_arn = dependency.alb.outputs.alb_lister_arn
-  route53_domain = "piroddi.co.za"
+  route53_domain = "piroddi.link"
   user_pool_id =  dependency.cognito.outputs.user_pool_id
   client_id = dependency.cognito.outputs.client_id
 }

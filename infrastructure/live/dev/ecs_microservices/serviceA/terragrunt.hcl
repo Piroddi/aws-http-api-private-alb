@@ -1,7 +1,3 @@
-dependencies {
-  paths = ["../../networking/vpc", "../../ecs_alb", "../../ecs_cluster"]
-}
-
 dependency "vpc" {
   config_path = "../../networking/vpc"
 }

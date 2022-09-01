@@ -96,4 +96,4 @@ build/
 ### VS Code ###
 .vscode/
 
-
+.terraform.lock.hcl

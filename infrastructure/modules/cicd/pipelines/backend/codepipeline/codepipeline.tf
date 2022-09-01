@@ -89,7 +89,7 @@ resource "aws_codepipeline" "main" {
       input_artifacts = ["BuildArtifact"]
       version = "1"
       configuration =  {
-        ClusterName = "helloworld-${var.env}"
+        ClusterName = "containers-${var.env}"
         ServiceName = var.ecs_service_name
       }
     }
